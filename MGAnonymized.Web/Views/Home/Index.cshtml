@@ -1,0 +1,174 @@
+﻿@using MGAnonymized.Web.Common.Models;
+
+@model ICollection<Movie>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Movies</h2>
+
+<div class="bg-light ml-4 mr-4">
+    @foreach (var movie in Model)
+    {
+    <div class="border-dark mb-3 p-2">
+        <div class="row mb-2">
+            <div class="col-12"><h3 class="font-weight-bold">@movie.Headline</h3></div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.Id)</div>
+            <div class="col-8">@movie.Id</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.Year)</div>
+            <div class="col-8">@movie.Year</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.Description)</div>
+            <div class="col-8">@movie.Description</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.Synopsis)</div>
+            <div class="col-8">@movie.Synopsis</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.Duration)</div>
+            <div class="col-8">@movie.Duration</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.Url)</div>
+            <div class="col-8">@movie.Url</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.Genres)</div>
+            @if (movie.Genres != null)
+            {
+                <div class="col-8">@string.Join(", ", movie.Genres)</div>
+            }
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.Directors)</div>
+            @if (movie.Directors != null)
+            {
+                <div class="col-8">@string.Join(", ", movie.Directors.Select(c => c.Name))</div>
+            }
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.Cast)</div>
+            @if (movie.Cast != null)
+            {
+                <div class="col-8">@string.Join(", ", movie.Cast.Select(c => c.Name))</div>
+            }
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.Class)</div>
+            <div class="col-8">@movie.Class</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.Cert)</div>
+            <div class="col-8">@movie.Cert</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.LastUpdated)</div>
+            <div class="col-8">@movie.LastUpdated</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.Rating)</div>
+            <div class="col-8">@movie.Rating</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.ReviewAuthor)</div>
+            <div class="col-8">@movie.ReviewAuthor</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.SgId)</div>
+            <div class="col-8">@movie.SgId</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.SgUrl)</div>
+            <div class="col-8">@movie.SgUrl</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.SkyGoId)</div>
+            <div class="col-8">@movie.SkyGoId</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.SkyGoUrl)</div>
+            <div class="col-8">@movie.SkyGoUrl</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.Videos)</div>
+            @if (movie.Videos != null && movie.Videos.Count > 0)
+            {
+                <div class="col-8">
+                    @foreach (var video in movie.Videos)
+                    {
+                        <div class="row mb-2">
+                            <div class="col-12"><h5 class="font-weight-bold">@video.Title</h5></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3 mr-2 font-weight-bold">@nameof(video.Type)</div>
+                            <div class="col-8">@video.Type</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3 mr-2 font-weight-bold">@nameof(video.ThumbnailUrl)</div>
+                            <div class="col-8">@video.ThumbnailUrl</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3 mr-2 font-weight-bold">@nameof(video.Url)</div>
+                            <div class="col-8">@video.Url</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3 mr-2 font-weight-bold">@nameof(video.Alternatives)</div>
+                            <div class="col-8">
+                                @if (video.Alternatives != null && video.Alternatives.Count > 0)
+                                {
+                                    @foreach (var alternativeVideo in video.Alternatives)
+                                    {
+                                        <div class="row">
+                                            <div class="col-3">@alternativeVideo.Quality</div>
+                                            <div class="col-8">@alternativeVideo.Url</div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.CardImages)</div>
+            @if (movie.CardImages != null && movie.CardImages.Count > 0)
+            {
+            <div class="col-8">
+                <div class="row mb-2 pre-scrollable">
+                    @foreach (var image in movie.CardImages)
+                    {
+                        <div class="col-3">
+                            <img src="@Url.Content($"~/{image.LocalPath}")" alt="@image.ShortName" height="200" />
+                        </div>
+                    }
+                </div>
+            </div>
+            }
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 mr-2 font-weight-bold">@nameof(movie.KeyArtImages)</div>
+            @if (movie.KeyArtImages != null && movie.KeyArtImages.Count > 0)
+            {
+            <div class="col-8">
+                <div class="row mb-2 pre-scrollable">
+                    @foreach (var image in movie.KeyArtImages)
+                    {
+                        <div class="col-3">
+                            <img src="@Url.Content($"~/{image.LocalPath}")" alt="@image.ShortName" height="200" />
+                        </div>
+                    }
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+    <hr />
+    }
+</div>
